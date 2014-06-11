@@ -26,3 +26,5 @@ gem 'cancancan', '~> 1.8'
 
 gem 'rails_12factor', group: :production
 
+gem 'i18n', '0.6.9'
+
