@@ -17,9 +17,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'letter_opener', group: :development
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
-
 gem 'devise'
 
 gem 'cancancan', '~> 1.8'
@@ -27,4 +24,11 @@ gem 'cancancan', '~> 1.8'
 gem 'rails_12factor', group: :production
 
 gem 'i18n', '0.6.9'
+
+gem 'annotate', ">=2.6.0"
+
+group :development, :test do
+	gem 'railroady'
+	gem 'debugger'
+end
 
