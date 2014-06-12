@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :welcome
 
+  resources :tasks
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
