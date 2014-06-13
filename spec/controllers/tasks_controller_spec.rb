@@ -1,18 +1,18 @@
-require 'spec_helper'
+# require 'spec_helper'
 require 'rails_helper'
-include DeviseSupportHelper
+# include ControllerHelpers
 
 describe TasksController do
 
 	describe "GET #index" do
 
-		# before do
-		# 	sign_in_as_a_valid_user
+		# before (:each) do
+		# 	sign_in
 		# end
 
 		it 'assigns collection of tasks' do
-			u = FactoryGirl.create(:user)
-
+			sign_in
+			current_user = user
 			f = FactoryGirl.create(:task)
 			get :index
 			assigns(:tasks).count.should eq(1)
