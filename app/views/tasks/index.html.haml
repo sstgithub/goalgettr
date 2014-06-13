@@ -1,0 +1,19 @@
+- @tasks.each do |t|
+	= t.task_name
+	%br
+	= t.description
+	%br
+	%br
+
+= form_for @task do |f|
+	= f.hidden_field :user_id, value: current_user.id
+	= f.label :task_name
+	= f.text_field :task_name
+	%br
+	= f.label :description
+	= f.text_area :description
+	%br
+	= f.label :status
+	= f.select :status, status_type.each {|a| a.humanize}
+	%br
+	= f.submit

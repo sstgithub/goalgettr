@@ -14,8 +14,10 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-gem 'letter_opener', group: :development
+group :development do
+	gem 'spring'
+	gem 'letter_opener'
+end
 
 gem 'devise'
 
@@ -31,4 +33,12 @@ group :development, :test do
 	gem 'railroady'
 	gem 'debugger'
 end
+
+group :test do
+	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'factory_girl_rails'
+end
+
+gem 'faker'
 
