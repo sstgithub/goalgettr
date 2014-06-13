@@ -1,10 +1,11 @@
 FactoryGirl.define do
 
 	factory(:user) do
-		first_name "oiasjdfij"
-		last_name "asdfasdf"
-		email "oaisdfjsadf@oasdhfoiasjf.com"
-		password "kasndfjasdf"
-		password_confirmation "kasndfjasdf"
+		first_name "asiudhfiuhasdf"
+		last_name "asdfasdgasdha"
+		email "asdfasdf@asdghasdf.com"
+		password "asdfashgas"
+		password_confirmation "asdfashgas"
 	end
+
 end

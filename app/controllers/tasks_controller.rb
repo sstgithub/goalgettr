@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 	def create
 		@task = Task.new(task_params)
 		if @task.save
-			redirect_to :index
+			redirect_to tasks_path
 		else
 			redirect_to :back
 		end

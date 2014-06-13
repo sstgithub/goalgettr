@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
 	factory(:task) do
-		user_id User.last.id
+		user_id 19796968
 		task_name "test task name here w00t"
 		description "task description insert here"
 		created_at Date.today
