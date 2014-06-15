@@ -1,12 +1,12 @@
+= render 'quadrant_chooser'
+
+= f.text_field :importance
+
+= f.text_field :urgency
+
 = f.label :task_name
 = f.text_field :task_name
-%br
-= f.label :importance
-= f.text_field :importance
-%br
-= f.label :urgency
-= f.text_field :urgency
-%br
+
 .input-group
 	.glyphicon.glyphicon-calendar
 	= f.text_field :due_datetime
