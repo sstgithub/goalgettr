@@ -5,6 +5,9 @@ class TasksController < ApplicationController
 	def index
 		@tasks = current_user.tasks
 		@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
+		@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
+		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
+		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
 		@task = Task.new
 	end
 

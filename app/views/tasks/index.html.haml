@@ -4,15 +4,19 @@
 	= render 'form', f: f
 
 #i1_u0.quadrant
-	- @i1u0_tasks.each do |t|
-		%ol
-			%li#bl
-				= t.task_name
-			%br
+	%ol.sortable
+		- @i1u0_tasks.each do |t|
+			= render 'task', t: t
 #i1_u1.quadrant
-	= render 'list', :object => @tasks.find_all {|t| t.importance == 1 and t.urgency == 1}
+	%ol.sortable
+		- @i1u1_tasks.each do |t|
+			= render 'task', t: t
 #i0_u0.quadrant
-	= render 'list', :object => @tasks.find_all {|t| t.importance == 0 and t.urgency == 0}
+	%ol.sortable
+		- @i0u0_tasks.each do |t|
+			= render 'task', t: t
 #i0_u1.quadrant
 	.arrowhead
-	= render 'list', :object => @tasks.find_all {|t| t.importance == 0 and t.urgency == 1}
+		%ol.sortable
+			- @i0u1_tasks.each do |t|
+				= render 'task', t: t
