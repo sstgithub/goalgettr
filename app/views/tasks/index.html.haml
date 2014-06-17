@@ -4,8 +4,11 @@
 	= render 'form', f: f
 
 #i1_u0.quadrant
-	.arrowhead
-	= render 'list', :object => @tasks.find_all {|t| t.importance == 1 and t.urgency == 0}
+	- @i1u0_tasks.each do |t|
+		%ol
+			%li#bl
+				= t.task_name
+			%br
 #i1_u1.quadrant
 	= render 'list', :object => @tasks.find_all {|t| t.importance == 1 and t.urgency == 1}
 #i0_u0.quadrant
