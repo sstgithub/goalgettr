@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 	# GET new /task 
 	def index
 		@tasks = current_user.tasks
+		@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
 		@task = Task.new
 	end
 
@@ -20,31 +21,18 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = current_user.tasks.build(task_params)
-		# if @task.save
-		# 	redirect_to tasks_path
-		# else
-		# 	redirect_to :back
-		# end
+		new_task_params = task_params
+		if new_task_params[:due_datetime] != ""
+			new_task_params[:due_datetime] = DateTime.strptime(new_task_params[:due_datetime], '%m/%d/%Y %I:%M %p')
+		end
+		new_task_params[:importance] = task_params[:importance]
+		new_task_params[:urgency] = task_params[:urgency]
 
-		respond_to do |format|
-      if @task.save
-        if request.xhr?
-          return render :partial => 'task', :object => @task
-        else
-          flash[:notice] = 'Task was successfully created.'
-          format.html { redirect_to(@task) }
-          format.xml  { render :xml => @task, :status => :created, :location => @task }
-        end
-      else
-        if request.xhr?
-          return render :action => 'new', :layout => false, :status => :unprocessable_entity
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }          
-        end        
-      end
-    end
+		@task = current_user.tasks.build(new_task_params)
+
+		if @task.save
+			redirect_to tasks_path
+		end
 	end
 
 	def update
@@ -68,6 +56,6 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance.to_s, :urgency.to_s, :latitude, :longitude)
+		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude)
 	end
 end
