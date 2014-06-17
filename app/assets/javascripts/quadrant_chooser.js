@@ -1,5 +1,5 @@
 (function($) {
-  $.fn.fw.quadrant_chooser = function() {
+  $.fn.quadrant_chooser = function() {
     return this.each(function(){
       var chooser = $(this);
       
@@ -46,3 +46,10 @@
     }    
   };
 }(jQuery));
+
+
+$( document ).ready(function() {
+    $('.quadrant_chooser').quadrant_chooser();
+    console.log( "ready!" );
+});
+

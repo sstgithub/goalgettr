@@ -83,22 +83,22 @@ $quadrant_chooser_square_length: 12px;
     &:hover {
       background-color: $i1_u0_color - $hover_diff;}
     top: 0;
-    left: 0; }
+    right: 0; }
   .i1_u1 {
     background-color: $i1_u1_color;
     &:hover {
       background-color: $i1_u1_color - $hover_diff;}
     top: 0;
-    right: 0; }
+    left: 0; }
   .i0_u0 {
   	background-color: $i0_u0_color;
     &:hover {
       background-color: $i0_u0_color - $hover_diff;}
     bottom: 0;
-    left: 0; }  
+    right: 0; }  
   .i0_u1  {
   	background-color: $i0_u1_color;
     &:hover {
       background-color: $i0_u1_color - $hover_diff;}
     bottom: 0;
-    right: 0; }}
+    left: 0; }}

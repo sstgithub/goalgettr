@@ -20,12 +20,31 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@task = Task.new(task_params)
-		if @task.save
-			redirect_to tasks_path
-		else
-			redirect_to :back
-		end
+		@task = current_user.tasks.build(task_params)
+		# if @task.save
+		# 	redirect_to tasks_path
+		# else
+		# 	redirect_to :back
+		# end
+
+		respond_to do |format|
+      if @task.save
+        if request.xhr?
+          return render :partial => 'task', :object => @task
+        else
+          flash[:notice] = 'Task was successfully created.'
+          format.html { redirect_to(@task) }
+          format.xml  { render :xml => @task, :status => :created, :location => @task }
+        end
+      else
+        if request.xhr?
+          return render :action => 'new', :layout => false, :status => :unprocessable_entity
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }          
+        end        
+      end
+    end
 	end
 
 	def update
@@ -49,6 +68,6 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit!
+		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance.to_s, :urgency.to_s, :latitude, :longitude)
 	end
 end

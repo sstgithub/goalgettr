@@ -3,3 +3,13 @@
 = form_for @task do |f|
 	= render 'form', f: f
 
+#i1_u0.quadrant
+	.arrowhead
+	= render 'list', :object => @tasks.find_all {|t| t.importance == 1 and t.urgency == 0}
+#i1_u1.quadrant
+	= render 'list', :object => @tasks.find_all {|t| t.importance == 1 and t.urgency == 1}
+#i0_u0.quadrant
+	= render 'list', :object => @tasks.find_all {|t| t.importance == 0 and t.urgency == 0}
+#i0_u1.quadrant
+	.arrowhead
+	= render 'list', :object => @tasks.find_all {|t| t.importance == 0 and t.urgency == 1}

@@ -34,11 +34,17 @@ gem 'rails_12factor', group: :production
 
 gem 'i18n', '0.6.9'
 
-gem 'annotate', ">=2.6.0"
+
 
 group :development, :test do
+	gem 'annotate', ">=2.6.0"
 	gem 'railroady'
 	gem 'debugger'
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'meta_request'
+	gem 'pry'
+	gem 'pry-doc'
 end
 
 group :test do
@@ -48,4 +54,6 @@ group :test do
 end
 
 gem 'faker'
+
+gem 'geocoder'
 
