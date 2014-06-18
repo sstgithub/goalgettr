@@ -1,0 +1,16 @@
+- content_for(:title, 'Full Task description')
+
+.container
+  %legend
+    = "Task #" + @task.id.to_s
+    = link_to 'Delete', @task, method: "delete", :class => "btn btn-xs btn-danger"
+    .col-md-12
+      %h6.col.md-4
+      %h4= "Name: " + @task.task_name
+      %h4= "Description: " + @task.description
+      %h4= "Current Status: " + @task.status
+      %h4= "Due Date: " + format_date(@task.due_datetime)
+%br
+%br
+.container
+  = link_to 'Return to Tasks', tasks_path, :class => "btn btn-success"

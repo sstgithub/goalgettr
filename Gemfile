@@ -5,6 +5,13 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'haml-rails'
 gem 'html2haml'
+gem 'bootstrap-sass', '~> 3.1.1'
+# gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0.1'
+
+
+
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -27,11 +34,17 @@ gem 'rails_12factor', group: :production
 
 gem 'i18n', '0.6.9'
 
-gem 'annotate', ">=2.6.0"
+
 
 group :development, :test do
+	gem 'annotate', ">=2.6.0"
 	gem 'railroady'
 	gem 'debugger'
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'meta_request'
+	gem 'pry'
+	gem 'pry-doc'
 end
 
 group :test do
@@ -41,4 +54,6 @@ group :test do
 end
 
 gem 'faker'
+
+gem 'geocoder'
 
