@@ -1,0 +1,14 @@
+= render 'quadrant_chooser'
+
+= f.hidden_field :importance
+
+= f.hidden_field :urgency
+
+= f.text_field :task_name
+
+.input-group
+	.glyphicon.glyphicon-calendar
+	= f.text_field :due_datetime
+
+= f.submit "Create"
+

@@ -1,19 +1,63 @@
-- @tasks.each do |t|
-	= t.task_name
-	%br
-	= t.description
-	%br
-	%br
+- content_for(:title, 'Your Tasks')
 
 = form_for @task do |f|
-	= f.hidden_field :user_id, value: current_user.id
-	= f.label :task_name
-	= f.text_field :task_name
-	%br
-	= f.label :description
-	= f.text_area :description
-	%br
-	= f.label :status
-	= f.select :status, status_type.each {|a| a.humanize}
-	%br
-	= f.submit
+	= render 'form', f: f
+
+/ #i1_u0.quadrant
+/ 	%ol.sortable
+/ 		- @i1u0_tasks.each do |t|
+/ 			%li.task
+/ 				= t.task_name
+/ #i1_u1.quadrant
+/ 	%ol.sortable
+/ 		- @i1u1_tasks.each do |t|
+/ 			= render 'task', t: t
+/ #i0_u0.quadrant
+/ 	%ol.sortable
+/ 		- @i0u0_tasks.each do |t|
+/ 			= render 'task', t: t
+/ #i0_u1.quadrant
+/ 	.arrowhead
+/ 		%ol.sortable
+/ 			- @i0u1_tasks.each do |t|
+/ 				= render 'task', t: t
+
+.container	
+	.row
+		.col-md-6#i1_u1_color
+			%table.table
+				.tbody#flowing
+					%ol
+						- @i1u1_tasks.each do |t|
+							%li.task
+								= t.task_name
+								= link_to "Edit", edit_task_path(t), method: :get
+								= link_to "Delete", t, method: :delete
+		.col-md-6#i1_u0_color
+			%table.table
+				.tbody#flowing	
+					%ol
+						- @i1u0_tasks.each do |t|
+							%li.task
+								= t.task_name
+								= link_to "Edit", edit_task_path(t), method: :get
+								= link_to "Delete", t, method: :delete
+	.row
+		.col-md-6#i0_u1_color
+			%table.table
+				.tbody#flowing
+					%ol
+						- @i0u1_tasks.each do |t|
+							%li.task
+								= t.task_name
+								= link_to "Edit", edit_task_path(t), method: :get
+								= link_to "Delete", t, method: :delete
+		.col-md-6#i0_u0_color
+			%table.table
+				.tbody#flowing	
+					%ol
+						- @i0u0_tasks.each do |t|
+							%li.task
+								= t.task_name
+								= link_to "Edit", edit_task_path(t), method: :get
+								= link_to "Delete", t, method: :delete

@@ -1,0 +1,8 @@
+%td= t.task_name
+%td= t.description
+%td= t.status
+%td= format_date(t.due_datetime)
+%td= format_time(t.due_datetime)
+%td= button_to "View", task_path(t), method: "get", :class => "btn btn-xs btn-default"
+%td= button_to "Edit", edit_task_path(t), method: :get, :class => "btn btn-xs btn-default"
+%td= button_to "Delete", task_path(t), method: :delete, :class => "btn btn-xs btn-default"

@@ -2,9 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "bootstrap";
-@import "bootstrap-datetimepicker";
-
 @import 'effects.css.scss';
 
 $form_color: #CBCCCD;
@@ -20,21 +17,49 @@ $i1_u1_color : #A50C0F;
 $i0_u0_color : #E4481F;
 $i0_u1_color : #F89C47;
   
- #i1_u1_color {
-  background-color: $i1_u1_color;
- }
+div.quadrant {
+  position: relative;
+  height: 100px;
+  width: 50%;
+  ol {
+    overflow-y: auto;
+      }
+    }
+  
 
- #i1_u0_color {
+#i1_u0.quadrant {
+ 	float: left;
   background-color: $i1_u0_color;
- }
+  height: 25%;
+  div.arrowhead {
+    visibility: hidden;
+    position: absolute;
+    left: -12px;
+    width: 11px;
+    height: 109px;
+    background: url(/images/top_arrowhead.gif) no-repeat 0 0;   }}
 
- #i0_u0_color {
+#i1_u1.quadrant {
+  float: right;
+  background-color: $i1_u1_color;
+  height: 25%;}
+  
+#i0_u0.quadrant {
+  float: left;
   background-color: $i0_u0_color;
- }
-
- #i0_u1_color {
+  height: 25%;}
+  
+#i0_u1.quadrant {
+  float: right;
   background-color: $i0_u1_color;
- }
+  div.arrowhead {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+    width: 109px;
+    height: 11px;
+    background: url(/images/right_arrowhead.gif) no-repeat 0 0; }}
 
 //pick size of quadrant chooser box in easy add
 $quadrant_chooser_square_length: 15px;
