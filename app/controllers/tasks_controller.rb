@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 		@task = current_user.tasks.build(new_task_params)
 
 		if @task.save
-			redirect_to tasks_path
+			redirect_to task_path(@task.id)
 		end
 	end
 
@@ -59,6 +59,6 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude)
+		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude, :address)
 	end
 end

@@ -7,9 +7,24 @@
     .col-md-12
       %h6.col.md-4
       %h4= "Name: " + @task.task_name
-      %h4= "Description: " + @task.description
-      %h4= "Current Status: " + @task.status
-      %h4= "Due Date: " + format_date(@task.due_datetime)
+      - if @task.description
+        %h4= "Description: " + @task.description
+      - if @task.status
+        %h4= "Current Status: " + @task.status
+      - if @task.due_datetime
+        %h4= "Due Date: " + format_date(@task.due_datetime)
+      - if @task.address
+        %h4= "Latitude and longitude: " + @task.latitude.to_s + ", " + @task.longitude.to_s
+
+- if @task.geocoded?
+  - @location = [@task.latitude, @task.longitude]
+  - Task.near(@location, 20).each do |a|
+    = "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}" 
+    %br
+- else
+  %h3 Yo.
+
+
 %br
 %br
 .container

@@ -10,5 +10,15 @@
 	.glyphicon.glyphicon-calendar
 	= f.text_field :due_datetime
 
+= f.label :address
+= f.text_field :address
+%br
+= f.label :latitude
+= f.text_field :latitude
+%br
+= f.label :longitude
+= f.text_field :longitude
+%br
+
 = f.submit "Create"
 
