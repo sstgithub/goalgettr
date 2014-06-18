@@ -14,6 +14,14 @@
  *= require_self
  */
 
- #bl {
- 	background-color: black;
+ .col-md-6 {
+ 	margin-top: 0px;
+ 	padding: 0px;
+ }
+
+ #flowing {
+ 	min-height: 200px;
+ 	max-height: 200px;
+ 	overflow: auto;
+
  }
