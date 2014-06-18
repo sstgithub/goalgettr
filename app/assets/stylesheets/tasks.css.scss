@@ -2,82 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+
+@import 'effects.css.scss';
+
 $form_color: #CBCCCD;
 
 $hover_diff: #505050;
 
-
+body {
+  padding: 0 30px 0 30px; }
 
 // quadrant colors
 $i1_u0_color : #FFE6A3;
 $i1_u1_color : #A50C0F;
 $i0_u0_color : #E4481F;
 $i0_u1_color : #F89C47;
-
-
   
-div.quadrant {
-  position: relative;
-  height: 100px;
-  width: 50%;
-  ol {
-    overflow-y: auto;
-    li {
-      background-color: $form_color;
-      border: 1px solid rgb(150, 150, 150);
-      color: rgb(85, 85, 85);
-      margin: 5px 5px 5px 5px;
-      padding: 5px;
-      &:hover {
-        background-color: #82c7e7;
-        }
-      }
-    }
-  }
+ #i1_u1_color {
+  background-color: $i1_u1_color;
+ }
 
-#i1_u0.quadrant {
- 	float: left;
+ #i1_u0_color {
   background-color: $i1_u0_color;
-  div.arrowhead {
-    visibility: hidden;
-    position: absolute;
-    left: -12px;
-    width: 11px;
-    height: 109px;
-    background: url(/images/top_arrowhead.gif) no-repeat 0 0;   }}
+ }
 
-#i1_u1.quadrant {
-  float: right;
-  background-color: $i1_u1_color;}
-  
-#i0_u0.quadrant {
-  float: left;
-  background-color: $i0_u0_color;}
-  
-#i0_u1.quadrant {
-  float: right;
+ #i0_u0_color {
+  background-color: $i0_u0_color;
+ }
+
+ #i0_u1_color {
   background-color: $i0_u1_color;
-  div.arrowhead {
-    visibility: hidden;
-    position: absolute;
-    right: 0;
-    bottom: -12px;
-    width: 109px;
-    height: 11px;
-    background: url(/images/right_arrowhead.gif) no-repeat 0 0; }}
-    
-$quadrant_chooser_square_length: 12px;
+ }
+
+//pick size of quadrant chooser box in easy add
+$quadrant_chooser_square_length: 15px;
     
 .quadrant_chooser {
   position: relative;
   height: $quadrant_chooser_square_length * 2;
   width: $quadrant_chooser_square_length * 2;
-  div  {
+  div {
     position: absolute;
     height: $quadrant_chooser_square_length;
     width: $quadrant_chooser_square_length;
-    &.selected 
-      +glow{} }
+    &.selected {
+      @include glow; } }
   .i1_u0 {
     background-color: $i1_u0_color;
     &:hover {
@@ -102,3 +73,30 @@ $quadrant_chooser_square_length: 12px;
       background-color: $i0_u1_color - $hover_diff;}
     bottom: 0;
     left: 0; }}
+
+.task {
+  position relative {}
+  background-color: $form_color; /*have # with this that just has background color based on what est time is*/
+  border: 1px solid rgb(150, 150, 150);
+  color: rgb(85, 85, 85);
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  .actions {
+    display: none; 
+  }
+  .star {
+    display: inline-block;
+    background: url(/images/star.png) no-repeat 0 0;
+    width: 10px;
+    height: 10px;
+  }
+  .actions {
+    position: absolute;
+    background-color: $form_color;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-box-shadow: -2px 0px 2px #888888;
+    -moz-box-shadow: -2px 0px 2px #888888;
+  }
+}
