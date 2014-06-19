@@ -55,5 +55,7 @@ end
 
 gem 'faker'
 
+#for location and maps stuff
 gem 'geocoder'
+gem 'gmaps4rails'
 

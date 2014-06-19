@@ -1,0 +1,51 @@
+<script type="text/javascript">
+
+handler = Gmaps.build('Google');
+handler.buildMap({ 
+provider: { mapTypeId: google.maps.MapTypeId.HYBRID, maxZoom: 20 }, 
+internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+});
+
+function displayOnMap(position){
+  var geolocator = handler.addMarker({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+    name: 'Current location',
+    infowindow: "<a target='blank' href='https://www.google.com/maps/place/"+position.coords.latitude+", "+position.coords.longitude+"'>Current location.</a>"
+  });
+  handler.map.centerOn(geolocator);
+};
+// handler = Gmaps.build('Google');
+// handler.buildMap({
+//     provider: {
+//       disableDefaultUI: true
+//       // pass in other Google Maps API options here
+//     },
+//     internal: {
+//       id: 'map'
+//     }
+//   },
+//   function(){
+//     markers = handler.addMarkers([
+//       {
+//         "lat": 0,
+//         "lng": 0,
+//         "picture": {
+//           "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+//           "width":  36,
+//           "height": 36
+//         },
+//         "infowindow": "hello!"
+//       }
+//     ]);
+//     handler.bounds.extendWith(markers);
+//     handler.fitMapToBounds();
+//   }
+// );
+</script>

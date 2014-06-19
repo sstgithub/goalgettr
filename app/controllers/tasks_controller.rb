@@ -9,6 +9,12 @@ class TasksController < ApplicationController
 		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
 		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
 		@task = Task.new
+		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
+		  marker.lat task.latitude
+		  marker.lng task.longitude
+		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}</a>"
+		  marker.json({ title: task.task_name })
+		end
 	end
 
 	def show

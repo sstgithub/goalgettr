@@ -16,13 +16,12 @@
       - if @task.address
         %h4= "Latitude and longitude: " + @task.latitude.to_s + ", " + @task.longitude.to_s
 
+%h3 Nearby tasks
 - if @task.geocoded?
   - @location = [@task.latitude, @task.longitude]
   - Task.near(@location, 20).each do |a|
-    = "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}" 
+    = link_to "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
     %br
-- else
-  %h3 Yo.
 
 
 %br
