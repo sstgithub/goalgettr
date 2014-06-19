@@ -13,6 +13,7 @@
 
 class Task < ActiveRecord::Base
 	belongs_to :user
+	validates_presence_of :importance
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
 end
