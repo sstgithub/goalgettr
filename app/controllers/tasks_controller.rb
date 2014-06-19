@@ -12,7 +12,7 @@ class TasksController < ApplicationController
 		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
 		  marker.lat task.latitude
 		  marker.lng task.longitude
-		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}</a>"
+		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
 		  marker.json({ title: task.task_name })
 		end
 	end
@@ -40,7 +40,9 @@ class TasksController < ApplicationController
 		@task = current_user.tasks.build(new_task_params)
 
 		if @task.save
-			redirect_to task_path(@task.id)
+			redirect_to tasks_path
+		else
+			redirect_to :back
 		end
 	end
 
