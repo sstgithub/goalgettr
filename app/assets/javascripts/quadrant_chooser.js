@@ -31,7 +31,7 @@
         updateChosenQuadrant(chooser);
         
         // re-focus title input
-        $('#task_title').inputFocus();
+        $('#task_task_name').inputFocus();
       });
     });
     
