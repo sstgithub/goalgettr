@@ -1,18 +1,36 @@
-= render 'quadrant_chooser'
-
-= f.hidden_field :importance
-
-= f.hidden_field :urgency
-
-= f.text_field :task_name
-
-.input-group
-	.glyphicon.glyphicon-calendar
-	= f.text_field :due_datetime
-
-= f.label :address
-= f.text_field :address
-%br
-
-= f.submit "Create"
-
+.panel-body
+	= form_for @task do |f|
+		.form-group
+			.col-md-offset-5.col-md-2.col-md-offset-5
+				= render 'quadrant_chooser'
+				= f.hidden_field :importance
+				= f.hidden_field :urgency
+		.form-group
+			.col-md-6
+				%br
+				.input-group
+					%span.input-group-addon
+						.glyphicon.glyphicon-arrow-right
+					= f.text_field :task_name, placeholder: 'Quick description', class: 'form-control'
+			.col-md-6
+				%br
+				.input-group
+					%span.input-group-addon
+						.glyphicon.glyphicon-time
+					= f.text_field :est_time, placeholder: 'Est time', class: 'form-control'
+		.form-group
+			.col-md-6
+				.input-group
+					%span.input-group-addon
+						.glyphicon.glyphicon-map-marker
+					= f.text_field :address, placeholder: 'Address', class: 'form-control'
+			.col-md-6
+				.input-group
+					%span.input-group-addon
+						.glyphicon.glyphicon-calendar
+					= f.text_field :due_datetime, placeholder: 'Due date and time', class: 'form-control'
+		.form-group
+			.col-md-offset-2.col-md-8.col-md-offset-2
+				%br
+				%button.btn.btn-primary.btn-block
+					Create

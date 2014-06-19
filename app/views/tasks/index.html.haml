@@ -1,87 +1,71 @@
 - content_for(:title, 'Your Tasks')
+.container
+	.row
+		.col-sm-6
+			.panel.panel-primary
+				.panel-heading
+					%h3.panel-title
+						Add a new task
+				= render 'form'
+		.col-sm-6
+			.panel.panel-primary
+				.panel-heading
+					%h3.panel-title
+						Task locations
+				.panel-body
+					%div
+						#map{style: "width: 100%; height: 200px;"}
+							= render "map"
+
+
+
+	/ #i1_u0.quadrant
+	/ 	%ol.sortable
+	/ 		- @i1u0_tasks.each do |t|
+	/ 			%li.task
+	/ 				= t.task_name
+	/ #i1_u1.quadrant
+	/ 	%ol.sortable
+	/ 		- @i1u1_tasks.each do |t|
+	/ 			= render 'task', t: t
+	/ #i0_u0.quadrant
+	/ 	%ol.sortable
+	/ 		- @i0u0_tasks.each do |t|
+	/ 			= render 'task', t: t
+	/ #i0_u1.quadrant
+	/ 	.arrowhead
+	/ 		%ol.sortable
+	/ 			- @i0u1_tasks.each do |t|
+	/ 				= render 'task', t: t
+
 
 .container
 	.row
-		.col-md-6
-			= form_for @task do |f|
-				= render 'form', f: f
-		.col-md-6
-			%div
-				#map{style: "width: 50%; height: 200px;"}
-					= render "map"
-
-
-
-/ #i1_u0.quadrant
-/ 	%ol.sortable
-/ 		- @i1u0_tasks.each do |t|
-/ 			%li.task
-/ 				= t.task_name
-/ #i1_u1.quadrant
-/ 	%ol.sortable
-/ 		- @i1u1_tasks.each do |t|
-/ 			= render 'task', t: t
-/ #i0_u0.quadrant
-/ 	%ol.sortable
-/ 		- @i0u0_tasks.each do |t|
-/ 			= render 'task', t: t
-/ #i0_u1.quadrant
-/ 	.arrowhead
-/ 		%ol.sortable
-/ 			- @i0u1_tasks.each do |t|
-/ 				= render 'task', t: t
-
-.container
-	
-
-.container	
+		.col-lg-2-col-lg-offset-5
+			%h3 Today
 	.row
-		.col-md-6#i1_u1_color
+		.col-lg-6#i1_u1_color
 			%table.table
 				.tbody#flowing
 					%ol
 						- @i1u1_tasks.each do |t|
-							%li.task
-								= t.task_name
-								- if t.geocoded?
-									= link_to "#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby;", task_path(t)
-								= link_to "Details;", task_path(t), method: :get
-								= link_to "Edit;", edit_task_path(t), method: :get
-								= link_to "X", t, method: :delete
-		.col-md-6#i1_u0_color
+							= render 'task_logic', t: t
+		.col-lg-6#i1_u0_color
 			%table.table
 				.tbody#flowing	
 					%ol
 						- @i1u0_tasks.each do |t|
-							%li.task
-								= t.task_name
-								- if t.geocoded?
-									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
-								= link_to "Details;", task_path(t), method: :get
-								= link_to "Edit;", edit_task_path(t), method: :get
-								= link_to "X", t, method: :delete
+							= render 'task_logic', t: t
 	.row
-		.col-md-6#i0_u1_color
+		.col-lg-6#i0_u1_color
 			%table.table
 				.tbody#flowing
 					%ol
 						- @i0u1_tasks.each do |t|
-							%li.task
-								= t.task_name
-								- if t.geocoded?
-									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
-								= link_to "Details;", task_path(t), method: :get
-								= link_to "Edit;", edit_task_path(t), method: :get
-								= link_to "X", t, method: :delete
-		.col-md-6#i0_u0_color
+							= render 'task_logic', t: t
+		.col-lg-6#i0_u0_color
 			%table.table
 				.tbody#flowing	
 					%ol
 						- @i0u0_tasks.each do |t|
-							%li.task
-								= t.task_name
-								- if t.geocoded?
-									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
-								= link_to "Details;", task_path(t), method: :get
-								= link_to "Edit;", edit_task_path(t), method: :get
-								= link_to "X", t, method: :delete
+							= render 'task_logic', t: t
