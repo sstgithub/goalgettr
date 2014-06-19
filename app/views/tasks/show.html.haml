@@ -2,25 +2,35 @@
 
 .container
   %legend
-    = "Task #" + @task.id.to_s
+    = @task.task_name
     = link_to 'Delete', @task, method: "delete", :class => "btn btn-xs btn-danger"
     .col-md-12
       %h6.col.md-4
-      %h4= "Name: " + @task.task_name
       - if @task.description
-        %h4= "Description: " + @task.description
+        %b= "Description: "
+        = @task.description
+        %br
       - if @task.status
-        %h4= "Current Status: " + @task.status
+        %b= "Current Status: " 
+        = @task.status
+        %br
       - if @task.due_datetime
-        %h4= "Due Date: " + format_date(@task.due_datetime)
+        %b= "Due Date: " 
+        = format_date(@task.due_datetime)
+        %br
       - if @task.address
-        %h4= "Latitude and longitude: " + @task.latitude.to_s + ", " + @task.longitude.to_s
+        = "At " + @task.address
 
-%h3 Nearby tasks
+
+
+
 - if @task.geocoded?
+  %h4= "Distance from current location: #{@task.distance_from([33.848869199999996, -84.3735468]).round(2)} miles"
+  %h3 Nearby tasks:
   - @location = [@task.latitude, @task.longitude]
-  - Task.near(@location, 20).each do |a|
-    = link_to "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
+  - Task.near(@location, 5).each do |a|
+    - unless @task.id == a.id
+      = link_to "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
     %br
 
 
