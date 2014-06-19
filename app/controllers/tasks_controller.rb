@@ -19,6 +19,16 @@ class TasksController < ApplicationController
 
 	def show
 		@task = Task.find(params[:id])
+		if @task.geocoded?
+			@location = [@task.latitude, @task.longitude]
+			@near_tasks = Task.near(@location, 8)
+			@hash = Gmaps4rails.build_markers(@near_tasks) do |task, marker|
+			  marker.lat task.latitude
+			  marker.lng task.longitude
+			  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
+			  marker.json({ title: task.task_name })
+			end
+		end
 	end
 
 	def new
@@ -67,6 +77,6 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude, :address)
+		params.require(:task).permit(:task_name, :est_time, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude, :address)
 	end
 end
