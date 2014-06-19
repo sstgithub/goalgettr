@@ -9,6 +9,12 @@ class TasksController < ApplicationController
 		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
 		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
 		@task = Task.new
+		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
+		  marker.lat task.latitude
+		  marker.lng task.longitude
+		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}</a>"
+		  marker.json({ title: task.task_name })
+		end
 	end
 
 	def show
@@ -34,7 +40,7 @@ class TasksController < ApplicationController
 		@task = current_user.tasks.build(new_task_params)
 
 		if @task.save
-			redirect_to tasks_path
+			redirect_to task_path(@task.id)
 		end
 	end
 
@@ -59,6 +65,6 @@ class TasksController < ApplicationController
 	private
 
 	def task_params
-		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude)
+		params.require(:task).permit(:task_name, :description, :status, :created_at, :updated_at, :due_datetime, :importance, :urgency, :latitude, :longitude, :address)
 	end
 end

@@ -1,7 +1,16 @@
 - content_for(:title, 'Your Tasks')
 
-= form_for @task do |f|
-	= render 'form', f: f
+.container
+	.row
+		.col-md-6
+			= form_for @task do |f|
+				= render 'form', f: f
+		.col-md-6
+			%div
+				#map{style: "width: 50%; height: 200px;"}
+					= render "map"
+
+
 
 / #i1_u0.quadrant
 / 	%ol.sortable
@@ -21,6 +30,9 @@
 / 		%ol.sortable
 / 			- @i0u1_tasks.each do |t|
 / 				= render 'task', t: t
+
+.container
+	
 
 .container	
 	.row
@@ -42,6 +54,7 @@
 								= t.task_name
 								= link_to "Edit", edit_task_path(t), method: :get
 								= link_to "Delete", t, method: :delete
+								= link_to "add to list"
 	.row
 		.col-md-6#i0_u1_color
 			%table.table
@@ -61,3 +74,5 @@
 								= t.task_name
 								= link_to "Edit", edit_task_path(t), method: :get
 								= link_to "Delete", t, method: :delete
+
+
