@@ -36,8 +36,8 @@ $i0_u1_color : #F89C47;
   background-color: $i0_u1_color;
  }
 
-//pick size of quadrant chooser box in easy add
-$quadrant_chooser_square_length: 15px;
+// size of quadrant chooser squares
+$quadrant_chooser_square_length: 20px;
     
 .quadrant_chooser {
   position: relative;
@@ -74,9 +74,95 @@ $quadrant_chooser_square_length: 15px;
     bottom: 0;
     left: 0; }}
 
+
+
+// est time chooser colors
+$less_10 : darkgreen;
+$less_30 : green;
+$less_60 : yellow;
+$less_180 : red;
+$less_300 : darkred;
+  
+ #less_10 {
+  background-color: $less_10;
+ }
+
+ #less_30 {
+  background-color: $less_30;
+ }
+
+ #less_60 {
+  background-color: $less_60;
+ }
+
+ #less_180 {
+  background-color: $less_180;
+ }
+
+ #less_300 {
+  background-color: $less_300;
+ }
+
+// size of est time chooser squares
+$time_chooser_square_length: 15px;
+
+.time_chooser {
+  position: relative;
+  height: $time_chooser_square_length;
+  width: $time_chooser_square_length * 5;
+  div {
+    position: absolute;
+    height: $time_chooser_square_length;
+    width: $time_chooser_square_length;
+    &.selected {
+      @include glow; } }
+  .less_10 {
+    background-color: $less_30;
+    &:hover {
+      background-color: $less_30 - $hover_diff;}
+    left: 0; }
+  .less_30 {
+    background-color: $less_10;
+    &:hover {
+      background-color: $less_10 - $hover_diff;}
+    left: $time_chooser_square_length; }
+  .less_60 {
+    background-color: $less_60;
+    &:hover {
+      background-color: $less_60 - $hover_diff;}
+    left: $time_chooser_square_length * 2; }  
+  .less_180  {
+    background-color: $less_180;
+    &:hover {
+      background-color: $less_180 - $hover_diff;}
+    left: $time_chooser_square_length * 3;
+  }
+  .less_300 {
+    background-color: $less_300;
+    &:hover {
+      background-color: $less_300 - $hover_diff;}
+    left: $time_chooser_square_length * 4;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .task {
   position relative {}
-  background-color: $form_color; /*have # with this that just has background color based on what est time is*/
+  background-color: $form_color; 
   border: 1px solid rgb(150, 150, 150);
   color: rgb(85, 85, 85);
   margin: 5px 5px 5px 5px;
@@ -99,4 +185,37 @@ $quadrant_chooser_square_length: 15px;
     -webkit-box-shadow: -2px 0px 2px #888888;
     -moz-box-shadow: -2px 0px 2px #888888;
   }
+}
+
+#very-low
+  {
+  background-color: darkgreen;
+  color: wheat;
+  a {
+    color: orange;
+  }
+}
+
+#low {
+  background-color: green;
+  color: wheat;
+  a {
+    color: orange;
+  }
+}
+
+#medium {
+  background-color: yellow;
+}
+
+#high {
+  background-color: red;
+  color: black;
+  a {
+    color: orange;
+  }
+}
+
+#very-high {
+  background-color: darkred;
 }
