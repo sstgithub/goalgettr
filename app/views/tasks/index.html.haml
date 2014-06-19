@@ -43,8 +43,11 @@
 						- @i1u1_tasks.each do |t|
 							%li.task
 								= t.task_name
-								= link_to "Edit", edit_task_path(t), method: :get
-								= link_to "Delete", t, method: :delete
+								- if t.geocoded?
+									= link_to "#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby;", task_path(t)
+								= link_to "Details;", task_path(t), method: :get
+								= link_to "Edit;", edit_task_path(t), method: :get
+								= link_to "X", t, method: :delete
 		.col-md-6#i1_u0_color
 			%table.table
 				.tbody#flowing	
@@ -52,9 +55,11 @@
 						- @i1u0_tasks.each do |t|
 							%li.task
 								= t.task_name
-								= link_to "Edit", edit_task_path(t), method: :get
-								= link_to "Delete", t, method: :delete
-								= link_to "add to list"
+								- if t.geocoded?
+									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
+								= link_to "Details;", task_path(t), method: :get
+								= link_to "Edit;", edit_task_path(t), method: :get
+								= link_to "X", t, method: :delete
 	.row
 		.col-md-6#i0_u1_color
 			%table.table
@@ -63,8 +68,11 @@
 						- @i0u1_tasks.each do |t|
 							%li.task
 								= t.task_name
-								= link_to "Edit", edit_task_path(t), method: :get
-								= link_to "Delete", t, method: :delete
+								- if t.geocoded?
+									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
+								= link_to "Details;", task_path(t), method: :get
+								= link_to "Edit;", edit_task_path(t), method: :get
+								= link_to "X", t, method: :delete
 		.col-md-6#i0_u0_color
 			%table.table
 				.tbody#flowing	
@@ -72,7 +80,8 @@
 						- @i0u0_tasks.each do |t|
 							%li.task
 								= t.task_name
-								= link_to "Edit", edit_task_path(t), method: :get
-								= link_to "Delete", t, method: :delete
-
-
+								- if t.geocoded?
+									= link_to "#{Task.near([t.latitude, t.longitude], 50).to_a.count- 1} nearby;", task_path(t)
+								= link_to "Details;", task_path(t), method: :get
+								= link_to "Edit;", edit_task_path(t), method: :get
+								= link_to "X", t, method: :delete
