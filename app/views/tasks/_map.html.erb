@@ -2,11 +2,10 @@
 
 handler = Gmaps.build('Google');
 handler.buildMap({ 
-provider: { mapTypeId: google.maps.MapTypeId.HYBRID, maxZoom: 20 }, 
+provider: { maxZoom: 20 }, 
 internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+  
 
   if(navigator.geolocation)
     navigator.geolocation.getCurrentPosition(displayOnMap);
@@ -19,6 +18,9 @@ function displayOnMap(position){
     name: 'Current location',
     infowindow: "<a target='blank' href='https://www.google.com/maps/place/"+position.coords.latitude+", "+position.coords.longitude+"'>Current location.</a>"
   });
+  
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
   handler.map.centerOn(geolocator);
 };
 // handler = Gmaps.build('Google');
