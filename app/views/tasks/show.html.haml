@@ -31,15 +31,20 @@
         #map{style: "width: 100%; height: 500px;"}
           = render "map"
 
+
   .row
     .col-md-offset-2.col-md-8.col-md-offset-2
       - if @task.geocoded?
         %h4= "Distance from current location: #{@task.distance_from([33.848869199999996, -84.3735468]).round(2)} miles"
-        %h3 Nearby tasks:
+        %h3 Nearby tasks (within 10 miles):
         - @location = [@task.latitude, @task.longitude]
-        - Task.near(@location, 8).each do |a|
+        - Task.near(@location, 10).each do |a|
           - unless @task.id == a.id
-            = link_to "#{a.address} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
+            - response = HTTParty.get("http://dev.virtualearth.net/REST/V1/Routes?wp.0=#{@task.street_address.gsub(' ','%20')}%20#{@task.city},#{@task.state}&wp.1=#{a.street_address.gsub(' ','%20')}%20#{a.city},#{a.state}&optmz=timeWithTraffic&key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV")
+            - travel_time = response["resourceSets"][0]["resources"][0]["travelDurationTraffic"]
+            = link_to "#{a.address} #{Time.at(travel_time).utc.strftime("%l min")} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
+
+            
           %br
 
 
