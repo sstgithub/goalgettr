@@ -34,6 +34,14 @@
 
   .row
     .col-md-offset-2.col-md-8.col-md-offset-2
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            Nearby Tasks
+        .panel-body
+          %table.table.table-bordered.table-striped.table-hover
+            .thead
+              %tr
       - if @task.geocoded?
         %h4= "Distance from current location: #{@task.distance_from([33.848869199999996, -84.3735468]).round(2)} miles"
         %h3 Nearby tasks (within 10 miles):
@@ -44,7 +52,7 @@
             - travel_time = response["resourceSets"][0]["resources"][0]["travelDurationTraffic"]
             = link_to "#{a.address} #{Time.at(travel_time).utc.strftime("%l min")} (#{a.distance.round(2)} miles) -- #{a.task_name}", task_path(a)
 
-            
+
           %br
 
 

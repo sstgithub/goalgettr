@@ -26,6 +26,13 @@
 								%br
 								.input-group
 									%span.input-group-addon
+										.glyphicon.glyphicon-text-width
+									= f.text_area :description, placeholder: 'Full description', class: 'form-control'
+						.form-group
+							.col-md-offset-2.col-md-8.col-md-offset-2
+								%br
+								.input-group
+									%span.input-group-addon
 										.glyphicon.glyphicon-time
 									= f.text_field :est_time, placeholder: 'Est time', class: 'form-control'
 						.form-group

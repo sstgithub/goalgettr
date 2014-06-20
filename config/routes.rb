@@ -8,7 +8,14 @@ Rails.application.routes.draw do
 
   resources :welcome
 
-  resources :tasks
+  resources :tasks do
+    member do
+      patch :change_completed
+    end
+    collection do
+      get :completed
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

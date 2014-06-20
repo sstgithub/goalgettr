@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 	# GET /tasks for current_user
 	# GET new /task 
 	def index
-		@tasks = current_user.tasks
+		@tasks = current_user.tasks.where(completed: false)
 		@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
 		@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
 		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
@@ -22,12 +22,32 @@ class TasksController < ApplicationController
 		if @task.geocoded?
 			@location = [@task.latitude, @task.longitude]
 			@near_tasks = Task.near(@location, 8)
-			@hash = Gmaps4rails.build_markers(@near_tasks) do |task, marker|
+			@nearby_tasks = @near_tasks.where(completed: false)
+			@hash = Gmaps4rails.build_markers(@nearby_tasks) do |task, marker|
 			  marker.lat task.latitude
 			  marker.lng task.longitude
 			  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
 			  marker.json({ title: task.task_name })
 			end
+		end
+		@i1u0_tasks = @nearby_tasks.where(importance: 1, urgency: 0)
+		@i1u1_tasks = @nearby_tasks.where(importance: 1, urgency: 1)
+		@i0u0_tasks = @nearby_tasks.where(importance: 0, urgency: 0)
+		@i0u1_tasks = @nearby_tasks.where(importance: 0, urgency: 1)
+	end
+
+	def completed
+		@tasks = current_user.tasks.where(completed: true)
+		@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
+		@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
+		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
+		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
+		@task = Task.new
+		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
+		  marker.lat task.latitude
+		  marker.lng task.longitude
+		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
+		  marker.json({ title: task.task_name })
 		end
 	end
 
@@ -72,6 +92,17 @@ class TasksController < ApplicationController
 		else
 			redirect_to :back
 		end
+	end
+
+	def change_completed
+		@task = Task.find(params[:id])
+		if @task.completed
+			val = false
+		else
+			val = true
+		end
+		@task.update_attributes(:completed => val)
+		redirect_to tasks_path
 	end
 
 	private

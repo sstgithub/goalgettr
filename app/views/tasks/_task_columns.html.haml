@@ -1,10 +1,20 @@
-- if t.completed == true
-	%li.task
-		.field
-			= f.check_box :completed
+%li.task
+	.row
+		= link_to change_completed_task_path(t), method: :patch, class: "btn btn-default" do
+			- unless t.completed == true
+				%i.glyphicon.glyphicon-ok
+			- else
+				%i.glyphicon.glyphicon-arrow-left
+		- if t.est_time.to_i <= 30 || t.est_time == '10 min' || t.est_time == '30 min'
+			%i.glyphicon.glyphicon-time#low
 		= t.task_name
 		- if t.geocoded?
-			= link_to "#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby;", task_path(t)
-		= link_to "Details;", task_path(t), method: :get
-		= link_to "Edit;", edit_task_path(t), method: :get
-		= link_to "X", t, method: :delete
+			= "(#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby)"
+		= link_to task_path(t), method: :get do
+			%i.glyphicon.glyphicon-info-sign{"data-placement" => "left", "data-toggle" => "tooltip", title: "Show details" type: "button"}
+		= link_to edit_task_path(t), method: :get do
+			%i.glyphicon.glyphicon-edit{"data-placement" => "left", "data-toggle" => "tooltip", title: "Edit task", type: "button"}
+		= link_to t, method: :delete do
+			%i.glyphicon.glyphicon-remove-circle{"data-placement" => "left", "data-toggle" => "tooltip", title: "Delete task", type: "button"}
+
+
