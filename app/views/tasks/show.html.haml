@@ -46,7 +46,9 @@
               - @location = [@task.latitude, @task.longitude]
               - Task.near(@location, 10).each do |a|
                 - unless @task.id == a.id
-                  - response = HTTParty.get("http://dev.virtualearth.net/REST/V1/Routes?wp.0=#{@task.street_address.gsub(' ','%20')}%20#{@task.city},#{@task.state}&wp.1=#{a.street_address.gsub(' ','%20')}%20#{a.city},#{a.state}&optmz=timeWithTraffic&key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV")
+                  - @t_street_address = @task.street_address.gsub('-','to')
+                  - @a_street_address = @a.street_address.gsub('-','to')
+                    - response = HTTParty.get("http://dev.virtualearth.net/REST/V1/Routes?wp.0=#{@t_street_address.gsub(' ','%20')}%20#{@task.city},#{@task.state}&wp.1=#{@a_street_address.gsub(' ','%20')}%20#{a.city},#{a.state}&optmz=timeWithTraffic&key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV")
                   - unless response == nil || response == []
                     - travel_time = response["resourceSets"][0]["resources"][0]["travelDurationTraffic"]
                   %li
