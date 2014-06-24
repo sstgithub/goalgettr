@@ -3,11 +3,13 @@ class TasksController < ApplicationController
 	# GET /tasks for current_user
 	# GET new /task 
 	def index
-		@tasks = current_user.tasks.where(completed: false)
-		@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
-		@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
-		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
-		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
+		if @tasks
+			@tasks = current_user.tasks.where(completed: false)
+			@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
+			@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
+			@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
+			@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
+		end
 		@task = Task.new
 		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
 		  marker.lat task.latitude
