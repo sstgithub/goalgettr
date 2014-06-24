@@ -70,7 +70,11 @@ class TasksController < ApplicationController
 		new_task_params[:importance] = task_params[:importance]
 		new_task_params[:urgency] = task_params[:urgency]
 
-		@task = current_user.tasks.build(new_task_params)
+		if current_user
+			@task = current_user.tasks.build(new_task_params)
+		else
+			redirect_to new_user_session_path
+		end
 
 		if @task.save
 			redirect_to tasks_path
