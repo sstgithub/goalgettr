@@ -41,31 +41,31 @@
 
 .container
 	.row
-		.col-lg-2-col-lg-offset-5
+		.col-lg-offset-5.col-lg-2
 			%h3 Today
 	.row
 		.col-lg-6#i1_u1_color
 			%table.table
 				.tbody#flowing
-					%ol
+					%ul.list-unstyled
 						- @i1u1_tasks.each do |t|
-							= render 'task_logic', t: t
+							= render 'task_columns', t: t
 		.col-lg-6#i1_u0_color
 			%table.table
 				.tbody#flowing	
-					%ol
+					%ul.list-unstyled
 						- @i1u0_tasks.each do |t|
-							= render 'task_logic', t: t
+							= render 'task_columns', t: t
 	.row
 		.col-lg-6#i0_u1_color
 			%table.table
 				.tbody#flowing
-					%ol
+					%ul.list-unstyled
 						- @i0u1_tasks.each do |t|
-							= render 'task_logic', t: t
+							= render 'task_columns', t: t
 		.col-lg-6#i0_u0_color
 			%table.table
 				.tbody#flowing	
-					%ol
+					%ul.list-unstyled
 						- @i0u0_tasks.each do |t|
-							= render 'task_logic', t: t
+							= render 'task_columns', t: t

@@ -14,7 +14,7 @@
  *= require_self
  */
 
-
+$hover_diff: #505050;
 
  #flowing {
  	min-height: 200px;
@@ -22,3 +22,36 @@
  	overflow: auto;
 
  }
+
+ .low {
+ 	color: #2ecc71;
+ }
+
+ .medium {
+ 	color: #34495e;
+ }
+
+ .high {
+ 	color: #e74c3c;
+ }
+
+
+
+
+.glyphicon-info-sign {
+	color: #5bc0de;
+	&:hover {
+   color: blue;}
+}
+
+.glyphicon-edit {
+	color: #f0ad4e;
+	&:hover {
+   color: darkorange;}
+}
+
+.glyphicon-remove-circle {
+	color: #d9534f;
+	&:hover {
+   color: red;}
+}
