@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 	# GET /tasks for current_user
 	# GET new /task 
 	def index
-		if @tasks
+		if current_user
 			@tasks = current_user.tasks.where(completed: false)
 			@i1u0_tasks = @tasks.where(importance: 1, urgency: 0)
 			@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
