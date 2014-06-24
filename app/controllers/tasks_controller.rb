@@ -72,15 +72,16 @@ class TasksController < ApplicationController
 
 		if current_user
 			@task = current_user.tasks.build(new_task_params)
+			if @task.save
+				redirect_to tasks_path
+			else
+				redirect_to :back
+			end
 		else
 			redirect_to new_user_session_path
 		end
 
-		if @task.save
-			redirect_to tasks_path
-		else
-			redirect_to :back
-		end
+		
 	end
 
 	def update
