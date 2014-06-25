@@ -42,4 +42,9 @@ class Task < ActiveRecord::Base
 	def get_bing_data
 		HTTParty.get('http://dev.virtualearth.net/REST/v1/Locations/@task.latitude.to_i,@task.longitude.to_i?key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV')
 	end
+
+	def location
+		[latitude, longitude]
+	end
+
 end

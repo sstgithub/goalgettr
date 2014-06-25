@@ -22,6 +22,8 @@ class TasksController < ApplicationController
 
 	def show
 		@task = Task.find(params[:id])
+		@tasks = Task.near(@task.location, 10) - [@task]
+
 		if @task.geocoded?
 			@location = [@task.latitude, @task.longitude]
 			@near_tasks = Task.near(@location, 8)

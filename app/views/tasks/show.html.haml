@@ -43,21 +43,12 @@
               Nearby Tasks
           .panel-body
             - if @task.geocoded?
-              - @location = [@task.latitude, @task.longitude]
-              - Task.near(@location, 10).each do |a|
-                - unless @task.id == a.id
-                  - if @task.street_address && a.street_address
-                    - @t_street_address = @task.street_address.split("-")[1]
-                    - @a_street_address = a.street_address.split("-")[1]
-                  - if @t_street_address && @a_street_address
-                    - response = HTTParty.get("http://dev.virtualearth.net/REST/V1/Routes?wp.0=#{@t_street_address.gsub(' ','%20')}%20#{@task.city},#{@task.state}&wp.1=#{@a_street_address.gsub(' ','%20')}%20#{a.city},#{a.state}&optmz=timeWithTraffic&key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV")
-                  - else
-                    - response = HTTParty.get("http://dev.virtualearth.net/REST/V1/Routes?wp.0=#{@task.street_address.gsub(' ','%20')}%20#{@task.city},#{@task.state}&wp.1=#{a.street_address.gsub(' ','%20')}%20#{a.city},#{a.state}&optmz=timeWithTraffic&key=Ah_f4EtXujIKRwM2DMfcrhaL_XJ0G_Ob_Yyy1nlDf0X_LYGhJilPBjWSfI91E3MV")
-                  - if response
-                    - travel_time = response["resourceSets"][0]["resources"][0]["travelDurationTraffic"]
-                    - if travel_time
-                      %li
-                        = link_to "#{a.address} (#{distance_of_time_in_words(travel_time)} driving time) -- #{a.task_name}", task_path(a)
+              - @tasks.each do |a|
+                %li
+                  = link_to "#{a.address} (#{distance_of_time_in_words(travel_time(@task, a))} driving time) -- #{a.task_name}", task_path(a)
+
+               
+                    
 
 
           %br
