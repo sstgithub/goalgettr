@@ -45,7 +45,7 @@
             - if @task.geocoded?
               - @tasks.each do |a|
                 %li
-                  = link_to "#{a.address} (#{distance_of_time_in_words(travel_time(@task, a))} driving time) -- #{a.task_name}", task_path(a)
+                  = link_to "#{a.address} (#{travel_time(@task, a)}) -- #{a.task_name}", task_path(a)
 
                
                     

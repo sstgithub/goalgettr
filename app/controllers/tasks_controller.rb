@@ -9,15 +9,19 @@ class TasksController < ApplicationController
 			@i1u1_tasks = @tasks.where(importance: 1, urgency: 1)
 			@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
 			@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
-			@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
-			  marker.lat task.latitude
-			  marker.lng task.longitude
-			  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
-			  marker.json({ title: task.task_name })
-			end
+			@hash = geocode_tasks(@tasks)
 		end
 		@task = Task.new
 		
+	end
+
+	def geocode_tasks(tasks)
+		Gmaps4rails.build_markers(tasks) do |task, marker|
+		  marker.lat task.latitude
+		  marker.lng task.longitude
+		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
+		  marker.json({ title: task.task_name })
+		end
 	end
 
 	def show
@@ -25,21 +29,16 @@ class TasksController < ApplicationController
 		@tasks = Task.near(@task.location, 10) - [@task]
 
 		if @task.geocoded?
-			@location = [@task.latitude, @task.longitude]
-			@near_tasks = Task.near(@location, 8)
-			@nearby_tasks = @near_tasks.where(completed: false)
-			@hash = Gmaps4rails.build_markers(@nearby_tasks) do |task, marker|
-			  marker.lat task.latitude
-			  marker.lng task.longitude
-			  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
-			  marker.json({ title: task.task_name })
-			end
+			@nearby_tasks = Task.near(@task.location, 10).where(completed: false)
+			@hash = geocode_tasks(@nearby_tasks)
 		end
+
 		@i1u0_tasks = @nearby_tasks.where(importance: 1, urgency: 0)
 		@i1u1_tasks = @nearby_tasks.where(importance: 1, urgency: 1)
 		@i0u0_tasks = @nearby_tasks.where(importance: 0, urgency: 0)
 		@i0u1_tasks = @nearby_tasks.where(importance: 0, urgency: 1)
 	end
+
 
 	def completed
 		@tasks = current_user.tasks.where(completed: true)
@@ -122,12 +121,7 @@ class TasksController < ApplicationController
 		@i0u0_tasks = @tasks.where(importance: 0, urgency: 0)
 		@i0u1_tasks = @tasks.where(importance: 0, urgency: 1)
 		@task = Task.new
-		@hash = Gmaps4rails.build_markers(@tasks) do |task, marker|
-		  marker.lat task.latitude
-		  marker.lng task.longitude
-		  marker.infowindow "<a target='blank' href=#{task_path(task)}>#{task.task_name}: </a>"
-		  marker.json({ title: task.task_name })
-		end
+		@hash = geocode_tasks(@tasks)
 	end
 
 	private
