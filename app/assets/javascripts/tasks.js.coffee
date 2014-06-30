@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-	$('#task_due_datetime').datetimepicker()
+	$('#task_due_datetime').fdatetimepicker()
 
 ###
 class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from builtin builder
