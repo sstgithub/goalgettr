@@ -1,29 +1,25 @@
 - content_for(:title, 'Your Tasks')
 
-.row
-	.large-8.large-centered.columns
-		.large-4.columns
-			Add a new task
+.row{"data-equalizer" => ""}
+	.large-12.large-centered.columns
+		.large-6.columns.panel.radius{"data-equalizer-watch" => ""}
+			.row
+				.large-10.small-centered.columns
+					.large-8.small-centered.columns
+						%h3
+							Add a new task
 			= render 'form'
-		.large-4.columns
-			%div
-				#map{style: "width: 100%; height: 200px;"}
-					= render "map"
-					
-		.panel.panel-primary
-			.panel-heading
-				%h3.panel-title
-					Add a new task
-			= render 'form'
-	.col-sm-6
-		.panel.panel-primary
-			.panel-heading
-				%h3.panel-title
-					Task locations
-			.panel-body
+		.large-6.columns.panel.callout.radius{"data-equalizer-watch" => ""}
+			.row
+				.large-10.small-centered.columns
+					.large-8.small-centered.columns
+						%h3
+							Task locations
+			.row
 				%div
-					#map{style: "width: 100%; height: 200px;"}
+					#map{style: "width: 100%; height: 350px;"}
 						= render "map"
+
 
 
 

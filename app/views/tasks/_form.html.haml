@@ -1,7 +1,7 @@
-.panel-body
+.row
 	= form_for @task do |f|
 		.form-group
-			.col-md-offset-5.col-md-2.col-md-offset-5
+			.large-2.small-centered.columns
 				= render 'quadrant_chooser'
 				= f.hidden_field :importance
 				= f.hidden_field :urgency
@@ -30,7 +30,7 @@
 						.glyphicon.glyphicon-calendar
 					= f.text_field :due_datetime, placeholder: 'Due date and time', class: 'form-control'
 		.form-group
-			.col-md-offset-2.col-md-8.col-md-offset-2
+			.large-8.small-centered.columns
 				%br
-				%button.btn.btn-primary.btn-block
+				.button.success.expand
 					Create
