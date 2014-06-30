@@ -5,10 +5,9 @@ gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'haml-rails'
 gem 'html2haml'
-gem 'bootstrap-sass', '~> 3.1.1'
-# gem 'bootstrap-datepicker-rails'
+gem 'foundation-rails' # gem 'bootstrap-sass', '~> 3.1.1'
 gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0.1'
+gem 'foundation-datetimepicker-rails' # gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0.1'
 
 
 
