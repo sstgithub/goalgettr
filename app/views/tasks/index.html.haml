@@ -3,11 +3,16 @@
 .row{"data-equalizer" => ""}
 	.large-12.large-centered.columns
 		.large-6.columns.panel.radius{"data-equalizer-watch" => ""}
-			.row
-				.large-10.small-centered.columns
-					.large-8.small-centered.columns
-						%h3
-							Add a new task
+			%ul.tabs{"data-tab" => ""}
+				%li.tab-title.active
+					%a{href: "#panel2-1"} Add a new task
+				%li.tab-title
+					%a{href: "#panel2-2"} Free time task generation
+			/ .row
+			/ 	.large-10.small-centered.columns
+			/ 		.large-8.small-centered.columns
+			/ 			%h3
+			/ 				Add a new task
 			= render 'form'
 		.large-6.columns.panel.callout.radius{"data-equalizer-watch" => ""}
 			.row

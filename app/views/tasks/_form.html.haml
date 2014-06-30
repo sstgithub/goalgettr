@@ -1,36 +1,40 @@
-.row
-	= form_for @task do |f|
-		.form-group
-			.large-2.small-centered.columns
-				= render 'quadrant_chooser'
-				= f.hidden_field :importance
-				= f.hidden_field :urgency
-		.form-group
-			.col-md-6
-				%br
-				.input-group
-					%span.input-group-addon
-						.glyphicon.glyphicon-arrow-right
-					= f.text_field :task_name, placeholder: 'Quick description', class: 'form-control'
-			.col-md-6
-				%br
-				.input-group
-					%span.input-group-addon
-						.glyphicon.glyphicon-time
-					= f.text_field :est_time, placeholder: 'Est time', class: 'form-control'
-		.form-group
-			.col-md-6
-				.input-group
-					%span.input-group-addon
-						.glyphicon.glyphicon-map-marker
-					= f.text_field :address, placeholder: 'Address', class: 'form-control'
-			.col-md-6
-				.input-group
-					%span.input-group-addon
-						.glyphicon.glyphicon-calendar
-					= f.text_field :due_datetime, placeholder: 'Due date and time', class: 'form-control'
-		.form-group
-			.large-8.small-centered.columns
-				%br
-				.button.success.expand
-					Create
+.tabs-content
+	.content.active#panel2-1
+		.row
+			= form_for @task do |f|
+				.form-group
+					.large-2.small-centered.columns
+						= render 'quadrant_chooser'
+						= f.hidden_field :importance
+						= f.hidden_field :urgency
+				.form-group
+					.col-md-6
+						%br
+						.input-group
+							%span.input-group-addon
+								.glyphicon.glyphicon-arrow-right
+							= f.text_field :task_name, placeholder: 'Quick description', class: 'form-control'
+					.col-md-6
+						%br
+						.input-group
+							%span.input-group-addon
+								.glyphicon.glyphicon-time
+							= f.text_field :est_time, placeholder: 'Est time', class: 'form-control'
+				.form-group
+					.col-md-6
+						.input-group
+							%span.input-group-addon
+								.glyphicon.glyphicon-map-marker
+							= f.text_field :address, placeholder: 'Address', class: 'form-control'
+					.col-md-6
+						.input-group
+							%span.input-group-addon
+								.glyphicon.glyphicon-calendar
+							= f.text_field :due_datetime, placeholder: 'Due date and time', class: 'form-control'
+				.form-group
+					.large-8.small-centered.columns
+						%br
+						.button.success.expand
+							Create
+	.content#panel2-2
+		%p Free time adder
