@@ -44,14 +44,14 @@
 		.col-lg-offset-5.col-lg-2
 			%h3 Today
 	.row
-		.col-lg-6#i1_u1_color
+		.col-xs-6#i1_u1_color
 			%table.table
 				.tbody#flowing
 					%ul.list-unstyled
 						- if @i1u1_tasks
 							- @i1u1_tasks.each do |t|
 								= render 'task_columns', t: t
-		.col-lg-6#i1_u0_color
+		.col-xs-6#i1_u0_color
 			%table.table
 				.tbody#flowing	
 					%ul.list-unstyled
@@ -59,14 +59,14 @@
 							- @i1u0_tasks.each do |t|
 								= render 'task_columns', t: t
 	.row
-		.col-lg-6#i0_u1_color
+		.col-xs-6#i0_u1_color
 			%table.table
 				.tbody#flowing
 					%ul.list-unstyled
 						- if @i0u1_tasks
 							- @i0u1_tasks.each do |t|
 								= render 'task_columns', t: t
-		.col-lg-6#i0_u0_color
+		.col-xs-6#i0_u0_color
 			%table.table
 				.tbody#flowing	
 					%ul.list-unstyled
