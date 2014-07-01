@@ -1,11 +1,12 @@
 %li.task
 	.row
-		.col-xs-10.col-sm-10.col-md-10
+		.col-xs-12.upper.col-sm-2.normaler.col-md-2.normaler
 			= link_to change_completed_task_path(t), method: :patch, class: "btn btn-default" do
 				- unless t.completed == true
 					%i.glyphicon.glyphicon-ok
 				- else
 					%i.glyphicon.glyphicon-arrow-left
+		.col-xs-12.col-sm-6.text-center.col-md-7.active-icons
 			- if t.est_time.to_i <= 30 || t.est_time == '10 min' || t.est_time == '30 min'
 				%i.glyphicon.glyphicon-time.low{"data-placement" => "left", "data-toggle" => "tooltip", title: "Estimated time: #{t.est_time}", type: "button"}
 			- elsif t.est_time.to_i <= 180 || t.est_time == '60 min' || t.est_time == '180 min' || t.est_time == '1 hr' || t.est_time == '3 hrs'
@@ -15,7 +16,7 @@
 			= t.task_name
 			- if t.geocoded?
 				= "(#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby)"
-		.col-xs-2.col-sm-2.col-md-2.active-icons
+		.col-xs-12.text-center.col-sm-4.col-md-3.active-icons.text-right
 			= link_to task_path(t), method: :get do
 				%i.glyphicon.glyphicon-info-sign{"data-placement" => "left", "data-toggle" => "tooltip", title: "Show details", type: "button"}
 			= link_to edit_task_path(t), method: :get do

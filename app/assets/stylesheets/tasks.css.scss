@@ -226,10 +226,20 @@ $time_chooser_square_length: 15px;
   background-color: darkred;
 }
 
-.btn-default {
-  margin-left: -11px;
-}
 
 .active-icons {
-  
+  margin-top: 5px;
+}
+
+.col-xs-2.active-icons {
+  margin-right: 0 px;
+}
+
+.upper {
+  margin-top: -9px;
+}
+
+.normaler {
+  margin-top: 0px;
+  margin-left: -11px;
 }
