@@ -14,11 +14,12 @@
 		= t.task_name
 		- if t.geocoded?
 			= "(#{Task.near([t.latitude, t.longitude], 8).to_a.count- 1} nearby)"
-		= link_to task_path(t), method: :get do
-			%i.glyphicon.glyphicon-info-sign{"data-placement" => "left", "data-toggle" => "tooltip", title: "Show details", type: "button"}
-		= link_to edit_task_path(t), method: :get do
-			%i.glyphicon.glyphicon-edit{"data-placement" => "left", "data-toggle" => "tooltip", title: "Edit task", type: "button"}
-		= link_to t, method: :delete do
-			%i.glyphicon.glyphicon-remove-circle{"data-placement" => "left", "data-toggle" => "tooltip", title: "Delete task", type: "button"}
+		%span.action-icons
+			= link_to task_path(t), method: :get do
+				%i.glyphicon.glyphicon-info-sign{"data-placement" => "left", "data-toggle" => "tooltip", title: "Show details", type: "button"}
+			= link_to edit_task_path(t), method: :get do
+				%i.glyphicon.glyphicon-edit{"data-placement" => "left", "data-toggle" => "tooltip", title: "Edit task", type: "button"}
+			= link_to t, method: :delete do
+				%i.glyphicon.glyphicon-remove-circle{"data-placement" => "left", "data-toggle" => "tooltip", title: "Delete task", type: "button"}
 
 
