@@ -2,11 +2,20 @@
 .container
 	.row
 		.col-sm-6
-			.panel.panel-primary
+			.panel.panel-info
 				.panel-heading
-					%h3.panel-title.text-center
-						Add a new task
-				= render 'form'
+					%ul.nav.nav-pills{role: "tablist"}
+						%li.active.panel-title
+							%a{"data-toggle" => "pill", href: "#home", role: "tab"} Add a new task
+						%li.panel-title
+							%a{"data-toggle" => "pill", href: "#profile", role: "tab"} Find optimized tasks
+				.tab-content
+					#home.tab-pane.active 
+						.panel-body
+							= render 'form'
+					#profile.tab-pane 
+						.panel-body
+							Free time task generation
 		.col-sm-6
 			.panel.panel-primary
 				.panel-heading
