@@ -188,6 +188,11 @@ $time_chooser_square_length: 15px;
   }
 }
 
+.action-icons
+  {
+    float: right;
+  }
+
 #very-low
   {
   background-color: darkgreen;
@@ -219,4 +224,29 @@ $time_chooser_square_length: 15px;
 
 #very-high {
   background-color: darkred;
+}
+
+
+.active-icons {
+  margin-top: 5px;
+}
+
+.col-xs-2.active-icons {
+  margin-right: 0 px;
+}
+
+
+
+.normaler {
+  margin-top: 0px;
+  margin-left: -11px;
+}
+
+@media (max-width: 768px)
+{
+.normaler {
+  margin-top:-9px;
+  margin-left: 0px;
+  text-align: center;
+  }
 }
