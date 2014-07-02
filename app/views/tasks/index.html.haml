@@ -15,7 +15,18 @@
 							= render 'form'
 					#profile.tab-pane 
 						.panel-body
-							Free time task generation (enter your mindset/tags you would be okay with (either all or specify manually) and enter the amount of time you have available and it will use all this info + your location to figure out what tasks you can do)
+							Free time task generation (enter your mindset/tags you would be okay with (either all or specify manually) and enter the amount of time you have available and the task or two you want to do for sure and it will use all this info + your location to figure out what tasks you can do). Free time attribute in users table for now.
+							When you submit form:
+							(hidden field)
+							saves to current_user.current_location = ...
+							(normal field to input)
+							saves to current_user.free_time
+							@tasks = Task.near(current_user.current_location, 10)
+							@tasks.each do |task|
+								if task.est_time <= current_user.free_time
+									 link_to task.name, task_path(t)
+									 (BE ABLE TO CLICK BOX LIKE IN FLAT UI AND SELECT TASKS THAT YOU WANT AND IT AUTOMATICALLY IMPORTS INTO ICLOUD CALENDAR
+									 	(AlSO, BE ABLE TO CREATE CALENDAR IN ICLOUD CALENDAR THAT WHEN YOU ADD TASK OR SWITCH TASK TO THAT CALENDAR IT AUTOMATICALLY EXPORTS IT OUT AND IMPORTS IT INTO GOALGETTR, ie, TWO WAY IMPORT/EXPORT FOR BOTH))
 		.col-sm-6
 			.panel.panel-primary
 				.panel-heading
