@@ -235,11 +235,18 @@ $time_chooser_square_length: 15px;
   margin-right: 0 px;
 }
 
-.upper {
-  margin-top: -9px;
-}
+
 
 .normaler {
   margin-top: 0px;
   margin-left: -11px;
+}
+
+@media (max-width: 768px)
+{
+.normaler {
+  margin-top:-9px;
+  margin-left: 0px;
+  text-align: center;
+  }
 }

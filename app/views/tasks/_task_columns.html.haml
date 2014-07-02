@@ -1,6 +1,6 @@
 %li.task
 	.row
-		.col-xs-12.upper.col-sm-2.normaler.col-md-2.normaler
+		.col-xs-12.col-sm-2.normaler.col-md-2.normaler
 			= link_to change_completed_task_path(t), method: :patch, class: "btn btn-default" do
 				- unless t.completed == true
 					%i.glyphicon.glyphicon-ok
